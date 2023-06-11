@@ -7,6 +7,7 @@ import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,9 @@ public class SysUserController {
     @Autowired
     private ISysUserService sysUserService;
 
-    private JWTUtil jwtUtil;
+    private JWTUtil jwtUtil = new JWTUtil();
+
+    @PostMapping("/login")
 
     public TableResult<SysUser> login(SysUser sysUser) {
         //查询多条件为等于关系
