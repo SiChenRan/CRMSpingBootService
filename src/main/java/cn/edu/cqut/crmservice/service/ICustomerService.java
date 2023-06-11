@@ -1,7 +1,10 @@
 package cn.edu.cqut.crmservice.service;
 
 import cn.edu.cqut.crmservice.entity.Customer;
+import cn.edu.cqut.crmservice.entity.Report;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICustomerService extends IService<Customer> {
 
+    List<Report> getCustomerCountByRegion();
 }
