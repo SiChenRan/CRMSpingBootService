@@ -2,11 +2,13 @@ package cn.edu.cqut.crmservice.controller;
 
 import cn.edu.cqut.crmservice.entity.Customer;
 import cn.edu.cqut.crmservice.service.ICustomerService;
+import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
@@ -35,8 +37,12 @@ public class CustomerController {
      * @param page  第几页
      * @return page1
      */
+    @Auth(roles = "SALES")
     @GetMapping("/getCustomerList")
-    public TableResult<Customer> getCustomerList(Integer limit, Integer page) {
+    public TableResult<Customer> getCustomerList(Integer limit, Integer page, HttpServletRequest request) {
+        System.out.println(request.getAttribute("suId"));
+        System.out.println(request.getAttribute("suName"));
+        System.out.println(request.getAttribute("suRole"));
         Page<Customer> customerPage = new Page<>(page, limit);
         //调用service层的list方法，返回数据表中的所有数据,调用page方法实现分页查询
         Page<Customer> page1 = customerService.page(customerPage);
@@ -44,19 +50,21 @@ public class CustomerController {
         return TableResult.ok("查询成功！", page1.getTotal(), page1.getRecords());
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/updateCustomer")
     public TableResult<Customer> updateCustomer(Customer customer) {
         customerService.updateById(customer);
         return TableResult.ok("修改客户信息成功！");
     }
 
-
+    @Auth(roles = "SALES")
     @PostMapping("/addCustomer")//映射的地址与方法名没有关系
     public TableResult<Customer> addCustomer(Customer customer) {
         customerService.save(customer);
         return TableResult.ok("新增客户信息成功！");
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/deleteCustomer")//映射的地址与方法名没有关系
     public TableResult<Customer> deleteCustomer(Integer[] ids) {//参数名要和前端的ajax方法中的data参数里面的属性名字一致
         customerService.removeByIds(Arrays.asList(ids));//asList用于将数组转化为List

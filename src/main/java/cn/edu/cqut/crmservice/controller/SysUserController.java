@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysUserController {
     @Autowired
     private ISysUserService sysUserService;
-
-    private JWTUtil jwtUtil = new JWTUtil();
+    @Autowired
+    private JWTUtil jwtUtil;
 
     @PostMapping("/login")
 

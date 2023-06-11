@@ -70,4 +70,12 @@ public class TableResult<T> {
     public void setData(List<T> data) {
         this.data = data;
     }
+
+    public T getObj() {
+        return obj;
+    }
+
+    public void setObj(T obj) {
+        this.obj = obj;
+    }
 }

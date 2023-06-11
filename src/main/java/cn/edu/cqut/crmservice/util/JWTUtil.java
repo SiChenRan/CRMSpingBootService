@@ -3,6 +3,7 @@ package cn.edu.cqut.crmservice.util;
 
 import cn.edu.cqut.crmservice.entity.SysUser;
 import io.jsonwebtoken.*;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+
 public class JWTUtil {
     //JWT秘钥
     private String AUTHORIZE_TOKEN_SECRET = "cqut";
