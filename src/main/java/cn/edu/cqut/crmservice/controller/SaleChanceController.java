@@ -4,6 +4,7 @@ import cn.edu.cqut.crmservice.entity.SaleChance;
 import cn.edu.cqut.crmservice.service.ISaleChanceService;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class SaleChanceController {
     }
 
     @PostMapping("/addSaleChance")//映射的地址与方法名没有关系
-    public TableResult<SaleChance> addContact(SaleChance saleChance) {
+    public TableResult<SaleChance> addContact(@NotNull SaleChance saleChance) {
         saleChance.setSalCreatTime(LocalDateTime.now());
         saleChance.setSalState(1);
         saleChanceService.save(saleChance);
