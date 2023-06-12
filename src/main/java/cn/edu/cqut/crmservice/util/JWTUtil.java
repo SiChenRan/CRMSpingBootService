@@ -3,7 +3,6 @@ package cn.edu.cqut.crmservice.util;
 
 import cn.edu.cqut.crmservice.entity.SysUser;
 import io.jsonwebtoken.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -18,15 +17,11 @@ public class JWTUtil {
     //JWT过期时间，单位毫秒。 7*24*60*60*1000=604800000
     private long AUTHORIZE_TOKEN_EXPIRE = 604800000;
 
-//    public static void main(String[] args) {
-//        // JWTUtil jwtUtill = new JWTUtil();
-//        // String jwt = jwtUtill.createJwt(null);
-//        //  System.out.println(jwt);
-//        //
-//        // jwtUtill.validateJWT("eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpc3MiOiJjb20uaHF5aiIsImlkIjoiMTAwMSIsImV4cCI6MTY0ODg2NjYzMiwiaWF0IjoxNjQ4ODY2NjI3fQ.Erl0VDC9zJm-wENFbriSiTHP-jN3xBpodCFQTPskH3M");
-//        //
-//        //
-//    }
+    /**
+     *
+     * @param sysUser
+     * @return token
+     */
 
     public String createJwt(SysUser sysUser) {
         //jwt的加密算法
@@ -55,6 +50,7 @@ public class JWTUtil {
 
     /**
      * 验证JWT
+     *
      * @param token
      * @return
      */
