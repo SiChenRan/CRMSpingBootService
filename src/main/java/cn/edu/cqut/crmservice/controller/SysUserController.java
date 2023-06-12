@@ -1,15 +1,18 @@
 package cn.edu.cqut.crmservice.controller;
 
+import cn.edu.cqut.crmservice.entity.Contact;
 import cn.edu.cqut.crmservice.entity.SysUser;
 import cn.edu.cqut.crmservice.service.ISysUserService;
+import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.JWTUtil;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -42,4 +45,18 @@ public class SysUserController {
         }
     }
 
+    @PostMapping("/addSysUser")//映射的地址与方法名没有关系
+    public TableResult<SysUser> addCustomer(SysUser sysUser) {
+        sysUserService.save(sysUser);
+        return TableResult.ok("新增客户信息成功！");
+    }
+
+    @GetMapping("/getSalesList")
+    public List<SysUser> getSalesList() {
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
+        // 条件查询
+        wrapper.eq("su_role", "SALES"); // 第一个参数是字段名
+        // wrapper.or().eq() ，wrapper默认是and 需要eq前用or才能使用sql的or
+        return sysUserService.list(wrapper);
+    }
 }

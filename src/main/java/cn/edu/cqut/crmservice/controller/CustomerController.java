@@ -5,7 +5,9 @@ import cn.edu.cqut.crmservice.service.ICustomerService;
 import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jetbrains.annotations.Async;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,4 +72,9 @@ public class CustomerController {
         customerService.removeByIds(Arrays.asList(ids));//asList用于将数组转化为List
         return TableResult.ok("删除客户信息成功！");
     }
+
+//    @Scheduled(cron = "0/5 * * * * *")
+//    public void job() {
+//        System.out.println("==================="+System.currentTimeMillis());
+//    }
 }

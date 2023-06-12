@@ -130,6 +130,10 @@ public class Contact implements Serializable {
         this.cusId = cusId;
     }
 
+    public String getCusName() {
+        return customer.getCusName();
+    }
+
     @Override
     public String toString() {
         return "Contact{"
