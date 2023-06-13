@@ -23,7 +23,6 @@ public class DevPlan implements Serializable {
      * 开发计划编号
      */
     @TableId(value = "dev_id", type = IdType.AUTO)
-
     private Integer devId;
 
     /**
