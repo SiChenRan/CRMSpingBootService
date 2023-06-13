@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * </p>
  *
  * @author CQUT
- * @since 2023-06-12
+ * @since 2023-06-13
  */
 @TableName("dev_plan")
 public class DevPlan implements Serializable {
@@ -70,8 +70,8 @@ public class DevPlan implements Serializable {
         return devDate;
     }
 
-    public void setDevDate(LocalDate devDate) {
-        this.devDate = devDate;
+    public void setDevDate(String devDate) {
+        this.devDate = LocalDate.parse(devDate);
     }
 
     public String getDevDesc() {
