@@ -1,8 +1,9 @@
 package cn.edu.cqut.crmservice.controller;
 
-import cn.edu.cqut.crmservice.entity.Contact;
+import cn.edu.cqut.crmservice.entity.Customer;
 import cn.edu.cqut.crmservice.entity.SaleChance;
 import cn.edu.cqut.crmservice.entity.SysUser;
+import cn.edu.cqut.crmservice.service.ICustomerService;
 import cn.edu.cqut.crmservice.service.ISaleChanceService;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -29,6 +30,8 @@ import java.util.Arrays;
 public class SaleChanceController {
     @Autowired
     private ISaleChanceService saleChanceService;
+    @Autowired
+    private ICustomerService customerService;
 
     @GetMapping("/getSaleChanceList")
     public TableResult<SaleChance> getSaleChanceList(Integer limit, Integer page) {
@@ -89,5 +92,30 @@ public class SaleChanceController {
             return TableResult.ok("查询成功", page1.getTotal(), page1.getRecords());
         }
     }
+
+    @PostMapping("/devSuccess")
+    public TableResult<SaleChance> devSuccess(SaleChance saleChance) {
+        saleChance.setSalState(3);
+        Customer customer = new Customer();
+        customer.setCusName(saleChance.getCusName());
+        customer.setCusRegion("华东");
+        customer.setCusIndustry("金融");
+        customer.setCusLevel("普通客户");
+        customer.setCusRate(5);
+        customer.setCusCredit(5);
+        customer.setCusAddr("上海市浦东区");
+        customer.setCusPhone(saleChance.getSalContactTel());
+        customerService.save(customer);
+        saleChanceService.updateById(saleChance);
+        return TableResult.ok("修改销售机会成功！");
+    }
+
+    @PostMapping("/devFailure")
+    public TableResult<SaleChance> devFailure(SaleChance saleChance) {
+        saleChance.setSalState(4);
+        saleChanceService.updateById(saleChance);
+        return TableResult.ok("修改销售机会成功！");
+    }
+
 
 }

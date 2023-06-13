@@ -1,14 +1,17 @@
 package cn.edu.cqut.crmservice.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author CQUT
@@ -50,6 +53,16 @@ public class DevPlan implements Serializable {
      */
     private String devResult;
 
+    private String devExecutor;
+
+    public String getDevExecutor() {
+        return devExecutor;
+    }
+
+    public void setDevExecutor(String devExecutor) {
+        this.devExecutor = devExecutor;
+    }
+
     public Integer getDevId() {
         return devId;
     }
@@ -68,6 +81,10 @@ public class DevPlan implements Serializable {
 
     public LocalDate getDevDate() {
         return devDate;
+    }
+
+    public void setDevDate(LocalDate devDate) {
+        this.devDate = devDate;
     }
 
     public void setDevDate(String devDate) {
@@ -101,12 +118,12 @@ public class DevPlan implements Serializable {
     @Override
     public String toString() {
         return "DevPlan{" +
-        "devId = " + devId +
-        ", salId = " + salId +
-        ", devDate = " + devDate +
-        ", devDesc = " + devDesc +
-        ", devDateexec = " + devDateexec +
-        ", devResult = " + devResult +
-        "}";
+                "devId = " + devId +
+                ", salId = " + salId +
+                ", devDate = " + devDate +
+                ", devDesc = " + devDesc +
+                ", devDateexec = " + devDateexec +
+                ", devResult = " + devResult +
+                "}";
     }
 }
