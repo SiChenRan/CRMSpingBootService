@@ -1,10 +1,13 @@
 package cn.edu.cqut.crmservice.util;
 
+import cn.edu.cqut.crmservice.entity.Customer;
+
 import java.util.List;
 
 public class ReportResult {
     private List<String> items;
     private List<Long> values;
+
 
     private ReportResult(List<String> items, List<Long> values) {
         this.items = items;

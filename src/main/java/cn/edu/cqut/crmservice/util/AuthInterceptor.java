@@ -33,6 +33,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             Auth auth = method.getAnnotation(Auth.class);
             if (auth.value()) {
                 // 没有提交token
+
                 if (token == null) {
                     httpServletResponse.setCharacterEncoding("UTF-8");
                     httpServletResponse.setContentType("application/json; charset=utf-8");
