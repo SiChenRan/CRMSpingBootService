@@ -1,6 +1,6 @@
 package cn.edu.cqut.crmservice.service;
 
-import cn.edu.cqut.crmservice.entity.Services;
+import cn.edu.cqut.crmservice.entity.BusinessRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Haibara
  * @since 2023-06-14
  */
-public interface IServicesService extends IService<Services> {
+public interface IBusinessRecordService extends IService<BusinessRecord> {
 
 }

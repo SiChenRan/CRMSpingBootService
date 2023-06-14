@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -45,11 +46,17 @@ public class CustomerController {
         System.out.println(request.getAttribute("suId"));
         System.out.println(request.getAttribute("suName"));
         System.out.println(request.getAttribute("suRole"));
-        Page<Customer> customerPage = new Page<>(page, limit);
-        //调用service层的list方法，返回数据表中的所有数据,调用page方法实现分页查询
-        Page<Customer> page1 = customerService.page(customerPage);
-        //getTotal返回表里的总记录数，getRecords返回当前页的数据列表
-        return TableResult.ok("查询成功！", page1.getTotal(), page1.getRecords());
+        if (limit == null && page == null) {
+            List<Customer> customerList = customerService.list();
+            // getTotal()方法返回表里的总记录数,getRecords()方法返回当前页的数据列表
+            return TableResult.ok("查询成功",customerList.size(),customerList);
+
+        } else {
+            Page<Customer> customerPage = new Page<>(page, limit);
+            Page<Customer> page1 = customerService.page(customerPage); // 调用service层的page方法,返回分页
+            // getTotal()方法返回表里的总记录数,getRecords()方法返回当前页的数据列表
+            return TableResult.ok("查询成功", page1.getTotal(), page1.getRecords());
+        }
     }
 
     @Auth(roles = "SALES")

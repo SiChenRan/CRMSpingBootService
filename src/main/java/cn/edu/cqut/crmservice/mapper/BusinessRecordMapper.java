@@ -1,6 +1,6 @@
 package cn.edu.cqut.crmservice.mapper;
 
-import cn.edu.cqut.crmservice.entity.Services;
+import cn.edu.cqut.crmservice.entity.BusinessRecord;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Haibara
  * @since 2023-06-14
  */
-public interface ServicesMapper extends BaseMapper<Services> {
+public interface BusinessRecordMapper extends BaseMapper<BusinessRecord> {
 
 }

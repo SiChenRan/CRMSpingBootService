@@ -1,6 +1,8 @@
 package cn.edu.cqut.crmservice.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,100 +11,99 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- *
- * </p>
- *
  * @author CQUT
- * @since 2023-06-08
+ * @since 2023-06-09
  */
 public class Services implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 标识服务唯一id
+     * 服务编号
      */
     @TableId(value = "ser_id", type = IdType.AUTO)
     private Integer serId;
 
     /**
-     * 服务概要
-     */
-    private String serAbs;
-
-    /**
-     * 包括：咨询、投诉、创建
+     * 服务类型：咨询、投诉、建议
      */
     private String serType;
 
     /**
-     * 服务的详细要求
+     * 服务概要
      */
-    private String serDetReq;
+    private String serSummary;
 
     /**
-     * customer表中的用户编号
+     * 服务详细要求
      */
-    private Integer serCusId;
+    private String serDetail;
 
     /**
-     * 服务创建者
+     * 客户编号
+     */
+    private Integer cusId;
+
+    /**
+     * 服务创建人：当前登录用户
      */
     private String serCreator;
 
     /**
-     * 服务创建时间
+     * 服务创建时间：当前系统时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime serCreTime;
+    private LocalDateTime serCreateTime;
 
     /**
-     * 新创建、已分配、已处理、已归档
+     * 服务状态：新创建、已分配、已处理、已归档
      */
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String serState;
 
     /**
-     * 分配时间
+     * 服务分配时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime serAlloTime;
+    private LocalDateTime serAllocTime;
 
     /**
      * 处理人
      */
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String serHandler;
 
     /**
-     * 处理方法
+     * 服务处理方法
      */
-    private String serSolution;
+    private String serProcessMethod;
 
     /**
-     * 处理时间
+     * 服务处理时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(updateStrategy = FieldStrategy.IGNORED)//解决MyBatisPlus不能传递null的localDateTIme
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime serHandTime;
+    private LocalDateTime serProcessTime;
 
     /**
      * 客户反馈
      */
-    private String serFeed;
+    private String serCusFeedback;
 
     /**
-     * 1,2,3,4,5
+     * 客户满意度:1,2,3,4,5
      */
     private Integer serCusRate;
 
     /**
-     * 反馈时间
+     * 客户反馈时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime serFeedTime;
+    private LocalDateTime serFeedbackTime;
 
     public Integer getSerId() {
         return serId;
@@ -110,14 +111,6 @@ public class Services implements Serializable {
 
     public void setSerId(Integer serId) {
         this.serId = serId;
-    }
-
-    public String getSerAbs() {
-        return serAbs;
-    }
-
-    public void setSerAbs(String serAbs) {
-        this.serAbs = serAbs;
     }
 
     public String getSerType() {
@@ -128,20 +121,28 @@ public class Services implements Serializable {
         this.serType = serType;
     }
 
-    public String getSerDetReq() {
-        return serDetReq;
+    public String getSerSummary() {
+        return serSummary;
     }
 
-    public void setSerDetReq(String serDetReq) {
-        this.serDetReq = serDetReq;
+    public void setSerSummary(String serSummary) {
+        this.serSummary = serSummary;
     }
 
-    public Integer getSerCusId() {
-        return serCusId;
+    public String getSerDetail() {
+        return serDetail;
     }
 
-    public void setSerCusId(Integer serCusId) {
-        this.serCusId = serCusId;
+    public void setSerDetail(String serDetail) {
+        this.serDetail = serDetail;
+    }
+
+    public Integer getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(Integer cusId) {
+        this.cusId = cusId;
     }
 
     public String getSerCreator() {
@@ -152,12 +153,12 @@ public class Services implements Serializable {
         this.serCreator = serCreator;
     }
 
-    public LocalDateTime getSerCreTime() {
-        return serCreTime;
+    public LocalDateTime getSerCreateTime() {
+        return serCreateTime;
     }
 
-    public void setSerCreTime(LocalDateTime serCreTime) {
-        this.serCreTime = serCreTime;
+    public void setSerCreateTime(LocalDateTime serCreateTime) {
+        this.serCreateTime = serCreateTime;
     }
 
     public String getSerState() {
@@ -168,12 +169,12 @@ public class Services implements Serializable {
         this.serState = serState;
     }
 
-    public LocalDateTime getSerAlloTime() {
-        return serAlloTime;
+    public LocalDateTime getSerAllocTime() {
+        return serAllocTime;
     }
 
-    public void setSerAlloTime(LocalDateTime serAlloTime) {
-        this.serAlloTime = serAlloTime;
+    public void setSerAllocTime(LocalDateTime serAllocTime) {
+        this.serAllocTime = serAllocTime;
     }
 
     public String getSerHandler() {
@@ -184,28 +185,28 @@ public class Services implements Serializable {
         this.serHandler = serHandler;
     }
 
-    public String getSerSolution() {
-        return serSolution;
+    public String getSerProcessMethod() {
+        return serProcessMethod;
     }
 
-    public void setSerSolution(String serSolution) {
-        this.serSolution = serSolution;
+    public void setSerProcessMethod(String serProcessMethod) {
+        this.serProcessMethod = serProcessMethod;
     }
 
-    public LocalDateTime getSerHandTime() {
-        return serHandTime;
+    public LocalDateTime getSerProcessTime() {
+        return serProcessTime;
     }
 
-    public void setSerHandTime(LocalDateTime serHandTime) {
-        this.serHandTime = serHandTime;
+    public void setSerProcessTime(LocalDateTime serProcessTime) {
+        this.serProcessTime = serProcessTime;
     }
 
-    public String getSerFeed() {
-        return serFeed;
+    public String getSerCusFeedback() {
+        return serCusFeedback;
     }
 
-    public void setSerFeed(String serFeed) {
-        this.serFeed = serFeed;
+    public void setSerCusFeedback(String serCusFeedback) {
+        this.serCusFeedback = serCusFeedback;
     }
 
     public Integer getSerCusRate() {
@@ -216,32 +217,47 @@ public class Services implements Serializable {
         this.serCusRate = serCusRate;
     }
 
-    public LocalDateTime getSerFeedTime() {
-        return serFeedTime;
+    public LocalDateTime getSerFeedbackTime() {
+        return serFeedbackTime;
     }
 
-    public void setSerFeedTime(LocalDateTime serFeedTime) {
-        this.serFeedTime = serFeedTime;
+    public void setSerFeedbackTime(LocalDateTime serFeedbackTime) {
+        this.serFeedbackTime = serFeedbackTime;
     }
 
     @Override
     public String toString() {
-        return "Services{" +
-                "serId = " + serId +
-                ", serAbs = " + serAbs +
-                ", serType = " + serType +
-                ", serDetReq = " + serDetReq +
-                ", serCusId = " + serCusId +
-                ", serCreator = " + serCreator +
-                ", serCreTime = " + serCreTime +
-                ", serState = " + serState +
-                ", serAlloTime = " + serAlloTime +
-                ", serHandler = " + serHandler +
-                ", serSolution = " + serSolution +
-                ", serHandTime = " + serHandTime +
-                ", serFeed = " + serFeed +
-                ", serCusRate = " + serCusRate +
-                ", serFeedTime = " + serFeedTime +
-                "}";
+        return "Services{"
+                + "serId = "
+                + serId
+                + ", serType = "
+                + serType
+                + ", serSummary = "
+                + serSummary
+                + ", serDetail = "
+                + serDetail
+                + ", cusId = "
+                + cusId
+                + ", serCreator = "
+                + serCreator
+                + ", serCreateTime = "
+                + serCreateTime
+                + ", serState = "
+                + serState
+                + ", serAllocTime = "
+                + serAllocTime
+                + ", serHandler = "
+                + serHandler
+                + ", serProcessMethod = "
+                + serProcessMethod
+                + ", serProcessTime = "
+                + serProcessTime
+                + ", serCusFeedback = "
+                + serCusFeedback
+                + ", serCusRate = "
+                + serCusRate
+                + ", serFeedbackTime = "
+                + serFeedbackTime
+                + "}";
     }
 }

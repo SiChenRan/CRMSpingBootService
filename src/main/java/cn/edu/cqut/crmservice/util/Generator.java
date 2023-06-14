@@ -10,7 +10,7 @@ public class Generator {
         }).packageConfig(builder -> {
             builder.parent("cn.edu.cqut.crmservice"); // 设置父包名
         }).strategyConfig(builder -> {
-            builder.addInclude("orders"); // 设置需要生成的表名
+            builder.addInclude("services"); // 设置需要生成的表名
         }).execute();
     }
 }
