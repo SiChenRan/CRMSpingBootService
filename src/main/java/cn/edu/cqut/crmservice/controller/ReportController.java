@@ -32,4 +32,19 @@ public class ReportController {
         }
         return ReportResult.ok(items,values);
     }
+
+
+    @GetMapping("/getAmountByReCusID")
+    public ReportResult getAmountByReCusID() {
+        List<Report> reports = customerService.getAmountByReCusID();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(customerService.getCusNameByID(Integer.parseInt(report.getItem())));
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+
+
 }
