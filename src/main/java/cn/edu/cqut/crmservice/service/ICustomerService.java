@@ -23,5 +23,6 @@ public interface ICustomerService extends IService<Customer> {
 
     String getCusNameByID(int id);
 
+    Report getAmountByReCusName(String username);
 
  }

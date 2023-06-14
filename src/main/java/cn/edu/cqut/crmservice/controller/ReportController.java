@@ -45,5 +45,16 @@ public class ReportController {
         }
         return ReportResult.ok(items,values);
     }
+    @GetMapping("/getAmountByReCusName")
+    public ReportResult getAmountByReCusName(String username) {
+        Report report = customerService.getAmountByReCusName(username);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+
+            items.add(report.getItem());
+            values.add(report.getValue());
+
+        return ReportResult.ok(items,values);
+    }
 
 }

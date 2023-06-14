@@ -35,4 +35,9 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     public String getCusNameByID(int id) {
         return baseMapper.getCustomerNameById(id);
     }
+
+    @Override
+    public Report getAmountByReCusName(String username) {
+        return  baseMapper.getAmountByReCusName(username);
+    }
 }

@@ -25,4 +25,12 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 
     @Select("SELECT cus_name FROM customer WHERE cus_id = #{id}")
     String getCustomerNameById(@Param("id") int id);
+
+    @Select("SELECT SUM(orders.odr_amount) value ,customer.cus_name item\n" +
+            "FROM customer\n" +
+            "JOIN orders ON customer.cus_id = orders.cus_id\n" +
+            "WHERE customer.cus_name = #{username}\n" +
+            "GROUP BY customer.cus_id")
+    Report getAmountByReCusName(@Param("username") String username);
+
 }
