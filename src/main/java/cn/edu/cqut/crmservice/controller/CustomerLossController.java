@@ -60,5 +60,4 @@ public class CustomerLossController {
         }
     }
 
-    public TableResult<>
 }
