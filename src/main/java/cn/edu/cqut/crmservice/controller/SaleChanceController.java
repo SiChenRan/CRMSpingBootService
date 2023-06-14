@@ -5,6 +5,7 @@ import cn.edu.cqut.crmservice.entity.SaleChance;
 import cn.edu.cqut.crmservice.entity.SysUser;
 import cn.edu.cqut.crmservice.service.ICustomerService;
 import cn.edu.cqut.crmservice.service.ISaleChanceService;
+import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -65,6 +66,7 @@ public class SaleChanceController {
         return TableResult.ok("删除销售机会信息成功！");
     }
 
+    @Auth(roles = "SUPERVISOR")
     @PostMapping("/assto")
     public TableResult<SaleChance> assto(SaleChance saleChance) {
         saleChance.setSalAssTime(LocalDateTime.now());
@@ -73,6 +75,7 @@ public class SaleChanceController {
         return TableResult.ok("指派成功！");
     }
 
+    @Auth(roles = "SALES")
     @GetMapping("/getPersonalSaleChanceList")
     public TableResult<SaleChance> getPersonalSaleChanceList(Integer limit, Integer page, SysUser sysUser) {
         QueryWrapper<SaleChance> wrapper = new QueryWrapper<>();
@@ -93,6 +96,7 @@ public class SaleChanceController {
         }
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/devSuccess")
     public TableResult<SaleChance> devSuccess(SaleChance saleChance) {
         saleChance.setSalState(3);
@@ -110,6 +114,7 @@ public class SaleChanceController {
         return TableResult.ok("修改销售机会成功！");
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/devFailure")
     public TableResult<SaleChance> devFailure(SaleChance saleChance) {
         saleChance.setSalState(4);

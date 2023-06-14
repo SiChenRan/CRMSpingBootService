@@ -2,6 +2,7 @@ package cn.edu.cqut.crmservice.controller;
 
 import cn.edu.cqut.crmservice.entity.DevPlan;
 import cn.edu.cqut.crmservice.service.IDevPlanService;
+import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -26,6 +27,8 @@ import java.util.Arrays;
 public class DevPlanController {
     @Autowired
     private IDevPlanService devPlanService;
+
+    @Auth(roles = "SALES")
 
     @GetMapping("/getDevPlanList")
     public TableResult<DevPlan> getDevPlanList(Integer limit, Integer page, DevPlan devPlan) {
@@ -52,6 +55,8 @@ public class DevPlanController {
         }
     }
 
+    @Auth(roles = "SALES")
+
     @PostMapping("/addDevPlan")//映射的地址与方法名没有关系
     public TableResult<DevPlan> addDevPlan(DevPlan devPlan) {
 //        devPlan.setDevDate(LocalDate.now());
@@ -59,12 +64,14 @@ public class DevPlanController {
         return TableResult.ok("制定开发计划成功！");
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/updateDevPlan")
     public TableResult<DevPlan> updateSaleChance(DevPlan devPlan) {
         devPlanService.updateById(devPlan);
         return TableResult.ok("修改开发计划成功！");
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/execDevPlan")
     public TableResult<DevPlan> execSaleChance(DevPlan devPlan) {
         devPlan.setDevDateexec(LocalDate.now());
@@ -86,6 +93,7 @@ public class DevPlanController {
         return TableResult.ok("填写计划结果成功！");
     }
 
+    @Auth(roles = "SALES")
     @PostMapping("/deleteDevPlan")
     public TableResult<DevPlan> deleteCustomer(Integer[] ids) {//参数名要和前端的ajax方法中的data参数里面的属性名字一致
         devPlanService.removeByIds(Arrays.asList(ids));//asList用于将数组转化为List
