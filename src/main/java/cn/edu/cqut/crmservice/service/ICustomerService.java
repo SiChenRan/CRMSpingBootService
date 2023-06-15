@@ -4,6 +4,7 @@ import cn.edu.cqut.crmservice.entity.Customer;
 import cn.edu.cqut.crmservice.entity.Report;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -18,5 +19,16 @@ public interface ICustomerService extends IService<Customer> {
 
     List<Report> getCustomerCountByRegion();
 
+    List<Report> getAmountByReCusID();
 
-}
+    String getCusNameByID(int id);
+
+    Report getAmountByReCusName(String username);
+
+    List<Report> getCustomerCountByIndustry();
+    List<Report> getCustomerCountByCredit();
+    List<Report> getServiceCountByTypeAndYear(int year);
+    List<Report> getServiceCountByType();
+
+    List<Report>   getCustomerLossRecordsBySalespersonName(String name);
+ }

@@ -7,6 +7,7 @@ import cn.edu.cqut.crmservice.service.ICustomerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -25,5 +26,42 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         return baseMapper.getCustomerCountByRegion();
     }
 
+    @Override
+    public List<Report> getAmountByReCusID() {
+        return baseMapper.getAmountByReCusID();
+    }
 
+    @Override
+    public String getCusNameByID(int id) {
+        return baseMapper.getCustomerNameById(id);
+    }
+
+    @Override
+    public Report getAmountByReCusName(String username) {
+        return  baseMapper.getAmountByReCusName(username);
+    }
+
+    @Override
+    public List<Report> getCustomerCountByIndustry() {
+        return baseMapper.getCustomerCountByIndustry();
+    }
+
+    @Override
+    public List<Report> getCustomerCountByCredit() {
+        return baseMapper.getCustomerCountByCredit();
+    }
+
+    @Override
+    public List<Report> getServiceCountByTypeAndYear(int year) {
+        return baseMapper.getServiceCountByTypeAndYear(year);
+    }
+    @Override
+    public List<Report> getServiceCountByType() {
+        return baseMapper.getServiceCountByType();
+    }
+
+    @Override
+    public List<Report> getCustomerLossRecordsBySalespersonName(String name) {
+        return baseMapper.getCustomerLossRecordsBySalespersonName(name);
+    }
 }

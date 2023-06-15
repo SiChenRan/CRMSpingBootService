@@ -32,4 +32,84 @@ public class ReportController {
         }
         return ReportResult.ok(items,values);
     }
+
+
+    @GetMapping("/getAmountByReCusID")
+    public ReportResult getAmountByReCusID() {
+        List<Report> reports = customerService.getAmountByReCusID();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(customerService.getCusNameByID(Integer.parseInt(report.getItem())));
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getAmountByReCusName")
+    public ReportResult getAmountByReCusName(String username) {
+        Report report = customerService.getAmountByReCusName(username);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+
+            items.add(report.getItem());
+            values.add(report.getValue());
+
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getCustomerCountByIndustry")
+    public ReportResult getCustomerCountByIndustry() {
+        List<Report> reports = customerService.getCustomerCountByIndustry();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getCustomerCountByCredit")
+    public ReportResult getCustomerCountByCredit() {
+        List<Report> reports = customerService.getCustomerCountByCredit();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getServiceCountByTypeAndYear")
+    public ReportResult getServiceCountByTypeAndYear(int year) {
+        List<Report> reports = customerService.getServiceCountByTypeAndYear(year);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getServiceCountByType")
+    public ReportResult getServiceCountByType() {
+        List<Report> reports = customerService.getServiceCountByType();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+
+    @GetMapping("/getCustomerLossRecordsBySalespersonName")
+    public ReportResult getCustomerLossRecordsBySalespersonName(String name) {
+        List<Report> reports = customerService.getCustomerLossRecordsBySalespersonName(name);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
 }

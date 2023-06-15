@@ -1,13 +1,12 @@
 package cn.edu.cqut.crmservice.controller;
 
-import cn.edu.cqut.crmservice.entity.Contact;
 import cn.edu.cqut.crmservice.entity.SysUser;
 import cn.edu.cqut.crmservice.service.ISysUserService;
-import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.JWTUtil;
 import cn.edu.cqut.crmservice.util.TableResult;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,5 +57,30 @@ public class SysUserController {
         wrapper.eq("su_role", "SALES"); // 第一个参数是字段名
         // wrapper.or().eq() ，wrapper默认是and 需要eq前用or才能使用sql的or
         return sysUserService.list(wrapper);
+    }
+
+    //    @Auth()
+    @PostMapping("/create")
+    public TableResult<Boolean> createUser(@RequestBody SysUser sysUser) {
+        return TableResult.ok("create ok", sysUserService.save(sysUser));
+    }
+
+    //    @Auth()
+    @GetMapping("/list")
+    public TableResult<SysUser> getAllUserList(Integer limit, Integer page) {
+        Page<SysUser> userPage = sysUserService.page(new Page<>(page, limit));
+        return TableResult.ok("list ok", userPage.getTotal(), userPage.getRecords());
+    }
+
+    //    @Auth()
+    @DeleteMapping("/del")
+    public TableResult<Boolean> deleteUserById(@RequestParam Integer id) {
+        return TableResult.ok("del ok", sysUserService.remove(new LambdaQueryWrapper<SysUser>().eq(SysUser::getSuId, id)));
+    }
+
+    //    @Auth()
+    @PostMapping("/update")
+    public TableResult<Boolean> updateUser(@RequestBody SysUser sysUser) {
+        return TableResult.ok("update ok", sysUserService.update(sysUser, new LambdaUpdateWrapper<SysUser>().eq(SysUser::getSuId, sysUser.getSuId())));
     }
 }
