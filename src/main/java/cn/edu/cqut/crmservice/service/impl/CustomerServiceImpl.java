@@ -24,4 +24,6 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     public List<Report> getCustomerCountByRegion() {
         return baseMapper.getCustomerCountByRegion();
     }
+
+
 }

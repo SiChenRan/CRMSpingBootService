@@ -82,6 +82,16 @@ public class Customer implements Serializable {
      */
     private String cusFax;
 
+    /**
+     * 销售员
+     */
+    private String cusSalesman;
+
+    /**
+     * 客户传真
+     */
+    private String cusState;
+
     public Integer getCusId() {
         return cusId;
     }
@@ -178,21 +188,41 @@ public class Customer implements Serializable {
         this.cusFax = cusFax;
     }
 
+
+    public String getCusSalesman() {
+        return cusSalesman;
+    }
+
+    public void setCusSalesman(String cusSalesman) {
+        this.cusSalesman = cusSalesman;
+    }
+
+    public String getCusState() {
+        return cusState;
+    }
+
+    public void setCusState(String cusState) {
+        this.cusState = cusState;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "cusId = " + cusId +
-                ", cusName = " + cusName +
-                ", cusRegion = " + cusRegion +
-                ", cusIndustry = " + cusIndustry +
-                ", cusLevel = " + cusLevel +
-                ", cusRate = " + cusRate +
-                ", cusCredit = " + cusCredit +
-                ", cusAddr = " + cusAddr +
-                ", cusPostcode = " + cusPostcode +
-                ", cusPhone = " + cusPhone +
-                ", cusUrl = " + cusUrl +
-                ", cusFax = " + cusFax +
-                "}";
+                "cusId=" + cusId +
+                ", cusName='" + cusName + '\'' +
+                ", cusRegion='" + cusRegion + '\'' +
+                ", cusIndustry='" + cusIndustry + '\'' +
+                ", cusLevel='" + cusLevel + '\'' +
+                ", cusRate=" + cusRate +
+                ", cusCredit=" + cusCredit +
+                ", creCreditDesc='" + creCreditDesc + '\'' +
+                ", cusAddr='" + cusAddr + '\'' +
+                ", cusPostcode='" + cusPostcode + '\'' +
+                ", cusPhone='" + cusPhone + '\'' +
+                ", cusUrl='" + cusUrl + '\'' +
+                ", cusFax='" + cusFax + '\'' +
+                ", cusSalesman='" + cusSalesman + '\'' +
+                ", cusState='" + cusState + '\'' +
+                '}';
     }
 }

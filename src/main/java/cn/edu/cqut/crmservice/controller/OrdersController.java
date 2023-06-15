@@ -2,8 +2,6 @@ package cn.edu.cqut.crmservice.controller;
 
 import cn.edu.cqut.crmservice.entity.Customer;
 import cn.edu.cqut.crmservice.entity.Orders;
-import cn.edu.cqut.crmservice.entity.Services;
-import cn.edu.cqut.crmservice.service.ICustomerService;
 import cn.edu.cqut.crmservice.service.IOrdersService;
 import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.TableResult;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * <p>
@@ -24,27 +21,21 @@ import java.util.List;
  * </p>
  *
  * @author Haibara
- * @since 2023-06-14
+ * @since 2023-06-15
  */
-@RestController  //给前端返回json数据
+@RestController
 @RequestMapping("/orders")
-@CrossOrigin //允许跨域请求
+@CrossOrigin
 public class OrdersController {
-    @Autowired  //自动从spring容器中获取对象给变量赋值
-    private IOrdersService ordersService;
+    @Autowired
+    IOrdersService ordersService;
 
-    /**
-     *
-     * @param limit 每页行数
-     * @param page 第几页
-     * @return
-     */
     @Auth(roles = "SALES")
     @GetMapping("/getOrdersList")
-    public TableResult<Orders> getOrdersList(Integer limit, Integer page){
+    public TableResult<Orders> getOrdersList(Integer limit, Integer page) {
         Page<Orders> ordersPage = new Page<>(page, limit);
-        Page<Orders> page1 = ordersService.page(ordersPage);//调用service层的page方法，返回分页
-        //getTotal()方法返回表里面的总记录数，   getRecords()方法返回当前页的数据列表
+        Page<Orders> page1 = ordersService.page(ordersPage); // 调用service层的page方法,返回分页
+        // getTotal()方法返回表里的总记录数,getRecords()方法返回当前页的数据列表
         return TableResult.ok("查询成功", page1.getTotal(), page1.getRecords());
     }
 }

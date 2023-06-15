@@ -1,11 +1,14 @@
 package cn.edu.cqut.crmservice.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,7 +16,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Haibara
- * @since 2023-06-14
+ * @since 2023-06-15
  */
 @TableName("customer_loss")
 public class CustomerLoss implements Serializable {
@@ -32,14 +35,16 @@ public class CustomerLoss implements Serializable {
     private Integer cusId;
 
     /**
-     * 客户经理ID
+     * 销售员
      */
     private String cusSalesman;
 
     /**
      * 上次下单时间
      */
-    private LocalDateTime clOrderTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date clOrderTime;
 
     /**
      * 暂缓流失措施
@@ -54,23 +59,14 @@ public class CustomerLoss implements Serializable {
     /**
      * 确认流失时间
      */
-    private LocalDateTime clLossTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date clLossTime;
 
     /**
      * 状态。1-预警、2-暂缓、3-流失、4-挽回
      */
     private Integer clStatus;
-
-    @TableField(exist = false)
-    private Customer customer;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public Integer getClId() {
         return clId;
@@ -96,11 +92,11 @@ public class CustomerLoss implements Serializable {
         this.cusSalesman = cusSalesman;
     }
 
-    public LocalDateTime getClOrderTime() {
+    public Date getClOrderTime() {
         return clOrderTime;
     }
 
-    public void setClOrderTime(LocalDateTime clOrderTime) {
+    public void setClOrderTime(Date clOrderTime) {
         this.clOrderTime = clOrderTime;
     }
 
@@ -120,11 +116,11 @@ public class CustomerLoss implements Serializable {
         this.clLossReason = clLossReason;
     }
 
-    public LocalDateTime getClLossTime() {
+    public Date getClLossTime() {
         return clLossTime;
     }
 
-    public void setClLossTime(LocalDateTime clLossTime) {
+    public void setClLossTime(Date clLossTime) {
         this.clLossTime = clLossTime;
     }
 
@@ -136,8 +132,18 @@ public class CustomerLoss implements Serializable {
         this.clStatus = clStatus;
     }
 
-    public String getCusName() {
-        return customer.getCusName();
+    public CustomerLoss(Integer clId, Integer cusId, String cusSalesman, Date clOrderTime, String clPause, String clLossReason, Date clLossTime, Integer clStatus) {
+        this.clId = clId;
+        this.cusId = cusId;
+        this.cusSalesman = cusSalesman;
+        this.clOrderTime = clOrderTime;
+        this.clPause = clPause;
+        this.clLossReason = clLossReason;
+        this.clLossTime = clLossTime;
+        this.clStatus = clStatus;
+    }
+
+    public CustomerLoss() {
     }
 
     @Override
@@ -151,7 +157,6 @@ public class CustomerLoss implements Serializable {
                 ", clLossReason='" + clLossReason + '\'' +
                 ", clLossTime=" + clLossTime +
                 ", clStatus=" + clStatus +
-                ", customer=" + customer +
                 '}';
     }
 }

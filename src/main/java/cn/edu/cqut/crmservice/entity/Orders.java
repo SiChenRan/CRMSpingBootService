@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -27,7 +28,7 @@ public class Orders implements Serializable {
     /**
      * 订单日期
      */
-    private LocalDateTime odrTime;
+    private Date odrTime;
 
     /**
      * 订单金额
@@ -57,11 +58,11 @@ public class Orders implements Serializable {
         this.odrId = odrId;
     }
 
-    public LocalDateTime getOdrTime() {
+    public Date getOdrTime() {
         return odrTime;
     }
 
-    public void setOdrTime(LocalDateTime odrTime) {
+    public void setOdrTime(Date odrTime) {
         this.odrTime = odrTime;
     }
 
@@ -100,12 +101,12 @@ public class Orders implements Serializable {
     @Override
     public String toString() {
         return "Orders{" +
-        "odrId = " + odrId +
-        ", odrTime = " + odrTime +
-        ", odrAmount = " + odrAmount +
-        ", odrShipto = " + odrShipto +
-        ", odrStatus = " + odrStatus +
-        ", cusId = " + cusId +
-        "}";
+                "odrId=" + odrId +
+                ", odrTime=" + odrTime +
+                ", odrAmount=" + odrAmount +
+                ", odrShipto='" + odrShipto + '\'' +
+                ", odrStatus=" + odrStatus +
+                ", cusId=" + cusId +
+                '}';
     }
 }

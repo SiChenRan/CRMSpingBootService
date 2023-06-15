@@ -18,4 +18,5 @@ import java.util.List;
 public interface CustomerMapper extends BaseMapper<Customer> {
     @Select("SELECT COUNT(*) value, cus_region item from customer GROUP BY cus_region")
     List<Report> getCustomerCountByRegion();
+
 }

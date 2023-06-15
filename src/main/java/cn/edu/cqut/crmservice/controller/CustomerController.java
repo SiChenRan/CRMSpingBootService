@@ -30,7 +30,6 @@ public class CustomerController {
     @Autowired//自动从Spring容器中获取对象给变量赋值
     private ICustomerService customerService;
 
-
     /*
       增删改查的开发顺序，1.查询，2.修改，3.新增，4.删除
      */

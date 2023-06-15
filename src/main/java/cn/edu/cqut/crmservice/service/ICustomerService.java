@@ -17,4 +17,6 @@ import java.util.List;
 public interface ICustomerService extends IService<Customer> {
 
     List<Report> getCustomerCountByRegion();
+
+
 }
