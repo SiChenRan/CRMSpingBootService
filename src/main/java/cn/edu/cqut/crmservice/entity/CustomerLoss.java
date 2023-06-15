@@ -1,6 +1,7 @@
 package cn.edu.cqut.crmservice.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,9 +36,9 @@ public class CustomerLoss implements Serializable {
     private Integer cusId;
 
     /**
-     * 销售员
+     * 客户经理ID
      */
-    private String cusSalesman;
+    private Integer suId;
 
     /**
      * 上次下单时间
@@ -68,6 +69,17 @@ public class CustomerLoss implements Serializable {
      */
     private Integer clStatus;
 
+    @TableField(exist = false)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Integer getClId() {
         return clId;
     }
@@ -85,11 +97,7 @@ public class CustomerLoss implements Serializable {
     }
 
     public String getCusSalesman() {
-        return cusSalesman;
-    }
-
-    public void setCusSalesman(String cusSalesman) {
-        this.cusSalesman = cusSalesman;
+        return customer.getCusSalesman();
     }
 
     public Date getClOrderTime() {
@@ -132,15 +140,24 @@ public class CustomerLoss implements Serializable {
         this.clStatus = clStatus;
     }
 
-    public CustomerLoss(Integer clId, Integer cusId, String cusSalesman, Date clOrderTime, String clPause, String clLossReason, Date clLossTime, Integer clStatus) {
+    public Integer getSuId() {
+        return suId;
+    }
+
+    public void setSuId(Integer suId) {
+        this.suId = suId;
+    }
+
+    public CustomerLoss(Integer clId, Integer cusId, Integer suId, Date clOrderTime, String clPause, String clLossReason, Date clLossTime, Integer clStatus, Customer customer) {
         this.clId = clId;
         this.cusId = cusId;
-        this.cusSalesman = cusSalesman;
+        this.suId = suId;
         this.clOrderTime = clOrderTime;
         this.clPause = clPause;
         this.clLossReason = clLossReason;
         this.clLossTime = clLossTime;
         this.clStatus = clStatus;
+        this.customer = customer;
     }
 
     public CustomerLoss() {
@@ -151,12 +168,13 @@ public class CustomerLoss implements Serializable {
         return "CustomerLoss{" +
                 "clId=" + clId +
                 ", cusId=" + cusId +
-                ", cusSalesman='" + cusSalesman + '\'' +
+                ", suId=" + suId +
                 ", clOrderTime=" + clOrderTime +
                 ", clPause='" + clPause + '\'' +
                 ", clLossReason='" + clLossReason + '\'' +
                 ", clLossTime=" + clLossTime +
                 ", clStatus=" + clStatus +
+                ", customer=" + customer +
                 '}';
     }
 }
