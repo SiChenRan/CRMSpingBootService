@@ -40,4 +40,28 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     public Report getAmountByReCusName(String username) {
         return  baseMapper.getAmountByReCusName(username);
     }
+
+    @Override
+    public List<Report> getCustomerCountByIndustry() {
+        return baseMapper.getCustomerCountByIndustry();
+    }
+
+    @Override
+    public List<Report> getCustomerCountByCredit() {
+        return baseMapper.getCustomerCountByCredit();
+    }
+
+    @Override
+    public List<Report> getServiceCountByTypeAndYear(int year) {
+        return baseMapper.getServiceCountByTypeAndYear(year);
+    }
+    @Override
+    public List<Report> getServiceCountByType() {
+        return baseMapper.getServiceCountByType();
+    }
+
+    @Override
+    public List<Report> getCustomerLossRecordsBySalespersonName(String name) {
+        return baseMapper.getCustomerLossRecordsBySalespersonName(name);
+    }
 }

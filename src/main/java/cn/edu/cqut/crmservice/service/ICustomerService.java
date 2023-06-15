@@ -25,4 +25,10 @@ public interface ICustomerService extends IService<Customer> {
 
     Report getAmountByReCusName(String username);
 
+    List<Report> getCustomerCountByIndustry();
+    List<Report> getCustomerCountByCredit();
+    List<Report> getServiceCountByTypeAndYear(int year);
+    List<Report> getServiceCountByType();
+
+    List<Report>   getCustomerLossRecordsBySalespersonName(String name);
  }

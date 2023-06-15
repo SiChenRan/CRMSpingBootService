@@ -56,5 +56,60 @@ public class ReportController {
 
         return ReportResult.ok(items,values);
     }
+    @GetMapping("/getCustomerCountByIndustry")
+    public ReportResult getCustomerCountByIndustry() {
+        List<Report> reports = customerService.getCustomerCountByIndustry();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getCustomerCountByCredit")
+    public ReportResult getCustomerCountByCredit() {
+        List<Report> reports = customerService.getCustomerCountByCredit();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getServiceCountByTypeAndYear")
+    public ReportResult getServiceCountByTypeAndYear(int year) {
+        List<Report> reports = customerService.getServiceCountByTypeAndYear(year);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
+    @GetMapping("/getServiceCountByType")
+    public ReportResult getServiceCountByType() {
+        List<Report> reports = customerService.getServiceCountByType();
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
 
+    @GetMapping("/getCustomerLossRecordsBySalespersonName")
+    public ReportResult getCustomerLossRecordsBySalespersonName(String name) {
+        List<Report> reports = customerService.getCustomerLossRecordsBySalespersonName(name);
+        List<String> items = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        for (Report report : reports) {
+            items.add(report.getItem());
+            values.add(report.getValue());
+        }
+        return ReportResult.ok(items,values);
+    }
 }

@@ -33,4 +33,28 @@ public interface CustomerMapper extends BaseMapper<Customer> {
             "GROUP BY customer.cus_id")
     Report getAmountByReCusName(@Param("username") String username);
 
+    @Select("SELECT CONCAT(cus_level, ', ', cus_industry)  item, COUNT(*) value  FROM customer GROUP BY cus_level, cus_industry")
+    List<Report> getCustomerCountByIndustry();
+    @Select("SELECT CONCAT(cus_credit, ', ', cus_industry) item, COUNT(*) value  FROM customer GROUP BY cus_credit, cus_industry")
+    List<Report> getCustomerCountByCredit();
+    @Select("SELECT ser_type AS item, COUNT(*) AS value FROM services WHERE YEAR(ser_process_time) = #{year} GROUP BY ser_type")
+    List<Report> getServiceCountByTypeAndYear(@Param("year") int year);
+
+    @Select("SELECT ser_type AS item, COUNT(*) AS value FROM services  GROUP BY ser_type")
+    List<Report> getServiceCountByType();
+//    @Select("SELECT customer_loss.cus_id, customer.cus_name, customer_loss.su_id, sys_user.su_name " +
+//            "FROM customer_loss cl " +
+//            "JOIN customer c ON cl.cus_id = c.cus_id " +
+//            "JOIN sys_user u ON cl.su_id = u.su_id " +
+//            "WHERE c.cus_name = #{name}")
+//    List<Report> getCustomerLossRecordsByCustomerName(@Param("name") String name);
+
+    @Select("SELECT  u.su_name item,COUNT(*)  value " +
+            "FROM customer_loss cl " +
+            "JOIN customer c ON cl.cus_id = c.cus_id " +
+            "JOIN sys_user u ON cl.su_id = u.su_id " +
+            "WHERE u.su_name = #{name}")
+    List<Report> getCustomerLossRecordsBySalespersonName(@Param("name") String name);
+
+
 }
