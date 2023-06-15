@@ -33,7 +33,7 @@ public class ServicesController {
      * @return TableResult
      */
     @GetMapping("/getServiceList")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","MANAGER","SUPERVISOR","ADMIN"})
     public TableResult<Services> getServicesList(Integer limit, Integer page) {
         Page<Services> servicesPage = new Page<>(page, limit);
         Page<Services> page1 = servicesService.page(servicesPage); // 调用service层的page方法,返回分页
@@ -42,7 +42,7 @@ public class ServicesController {
     }
 
     @GetMapping("/getWaitProcessList")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<Services> getWaitProcessList(Integer limit, Integer page, SysUser sysUser) {
         if (sysUser.getSuName() != null) {
             QueryWrapper<Services> wrapper = new QueryWrapper<>();
@@ -57,7 +57,7 @@ public class ServicesController {
     }
 
     @GetMapping("/getWaitFeedbackList")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<Services> getWaitFeedbackList(Integer limit, Integer page, SysUser sysUser) {
         if (sysUser.getSuName() != null) {
             QueryWrapper<Services> wrapper = new QueryWrapper<>();
@@ -73,7 +73,7 @@ public class ServicesController {
     }
 
     @GetMapping("/getArchivingServicesList")
-    @Auth(roles = "SUPERVISOR")
+    @Auth(roles = {"SUPERVISOR","ADMIN"})
     public TableResult<Services> getArchivingServicesList(Integer limit, Integer page, Services service) {
         QueryWrapper<Services> wrapper = new QueryWrapper<>();
 
@@ -91,14 +91,14 @@ public class ServicesController {
     }
 
     @PostMapping("/assignService")
-    @Auth(roles = "SUPERVISOR")
+    @Auth(roles = {"SUPERVISOR","ADMIN"})
     public TableResult<Services> assignService(Services service) {
         servicesService.updateById(service);
         return TableResult.ok("分配服务成功");
     }
 
     @PostMapping("/processService")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<Services> processService(Services service) {
         service.setSerState("已处理");
         servicesService.updateById(service);
@@ -106,7 +106,7 @@ public class ServicesController {
     }
 
     @PostMapping("/feedbackService")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<Services> feedbackService(Services service) {
         if (service.getSerCusRate() < 3) {
             service.setSerState("已分配");
@@ -123,7 +123,7 @@ public class ServicesController {
     }
 
     @PostMapping("/addService")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<Services> addService(Services service) {
         service.setSerState("新创建");
         servicesService.save(service);

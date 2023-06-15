@@ -39,7 +39,7 @@ public class CustomerController {
      * @param page  第几页
      * @return page1
      */
-    @Auth(roles = "SALES")
+    @Auth(roles = {"ADMIN","SALES","SUPERVISOR","MANAGER"})
     @GetMapping("/getCustomerList")
     public TableResult<Customer> getCustomerList(Integer limit, Integer page, HttpServletRequest request) {
         System.out.println(request.getAttribute("suId"));
@@ -58,21 +58,21 @@ public class CustomerController {
         }
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/updateCustomer")
     public TableResult<Customer> updateCustomer(Customer customer) {
         customerService.updateById(customer);
         return TableResult.ok("修改客户信息成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/addCustomer")//映射的地址与方法名没有关系
     public TableResult<Customer> addCustomer(Customer customer) {
         customerService.save(customer);
         return TableResult.ok("新增客户信息成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/deleteCustomer")//映射的地址与方法名没有关系
     public TableResult<Customer> deleteCustomer(Integer[] ids) {//参数名要和前端的ajax方法中的data参数里面的属性名字一致
         customerService.removeByIds(Arrays.asList(ids));//asList用于将数组转化为List

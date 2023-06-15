@@ -30,7 +30,7 @@ public class ContactController {
      * @param page  显示第几页
      * @return TableResult
      */
-    @Auth(roles = "SALES")
+    @Auth(roles = {"MANAGER","SUPERVISOR","SALES","ADMIN"})
     @GetMapping("/getContacts")
     public TableResult<Contact> getContactList(Integer limit, Integer page, Contact contact) {
         QueryWrapper<Contact> wrapper = new QueryWrapper<>();
@@ -51,21 +51,21 @@ public class ContactController {
         }
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/updateContact")
     public TableResult<Contact> updateContact(Contact contact) {
         contactService.updateById(contact);
         return TableResult.ok("修改联系人信息成功");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/addContact")
     public TableResult<Contact> addContact(Contact contact) {
         contactService.save(contact);
         return TableResult.ok("新增联系人信息成功");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/deleteContact")
     public TableResult<Contact> deleteContact(Integer[] ids) {//参数名要和前端ajax方法中data参数的属性名要一致
         contactService.removeByIds(Arrays.asList(ids));//asList方法把数组转成list

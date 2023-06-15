@@ -55,8 +55,18 @@ public class AuthInterceptor implements HandlerInterceptor {
                 String suRole = (String) result.getObj().get("suRole");
                 String suName = (String) result.getObj().get("suName");
 
+                boolean isValid = false;
+                for (String s : auth.roles()
+                ) {
+                    if (s.equals(suRole)) {
+                        isValid = true;
+                        break;
+                    }
+                }
+
                 //没有权限
-                if (!auth.roles().contains(suRole)) {
+//                if (!auth.roles().contains(suRole)) {
+                if (!isValid) {
                     httpServletResponse.setCharacterEncoding("UTF-8");
                     httpServletResponse.setContentType("application/json; charset=utf-8");
                     String respStr = JSON.toJSONString(TableResult.error(3, "没有权限"));

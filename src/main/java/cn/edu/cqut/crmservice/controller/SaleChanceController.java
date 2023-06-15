@@ -34,6 +34,7 @@ public class SaleChanceController {
     @Autowired
     private ICustomerService customerService;
 
+    @Auth(roles = {"SUPERVISOR", "SALES", "ADMIN"})
     @GetMapping("/getSaleChanceList")
     public TableResult<SaleChance> getSaleChanceList(Integer limit, Integer page) {
         Page<SaleChance> saleChancePage = new Page<>(page, limit);
@@ -42,6 +43,8 @@ public class SaleChanceController {
         //getTotal返回表里的总记录数，getRecords返回当前页的数据列表
         return TableResult.ok("查询成功！", page1.getTotal(), page1.getRecords());
     }
+
+    @Auth(roles = {"SUPERVISOR", "SALES", "ADMIN"})
 
     @PostMapping("/addSaleChance")//映射的地址与方法名没有关系
     public TableResult<SaleChance> addSaleChance(@NotNull SaleChance saleChance) {
@@ -54,11 +57,15 @@ public class SaleChanceController {
         return TableResult.ok("新增销售机会成功！");
     }
 
+    @Auth(roles = {"SUPERVISOR", "SALES", "ADMIN"})
+
     @PostMapping("/updateSaleChance")
     public TableResult<SaleChance> updateSaleChance(SaleChance saleChance) {
         saleChanceService.updateById(saleChance);
         return TableResult.ok("修改销售机会成功！");
     }
+
+    @Auth(roles = {"SUPERVISOR", "SALES", "ADMIN"})
 
     @PostMapping("/deleteSaleChance")//映射的地址与方法名没有关系
     public TableResult<SaleChance> deleteSaleChance(Integer[] ids) {//参数名要和前端的ajax方法中的data参数里面的属性名字一致
@@ -66,7 +73,7 @@ public class SaleChanceController {
         return TableResult.ok("删除销售机会信息成功！");
     }
 
-    @Auth(roles = "SUPERVISOR")
+    @Auth(roles = {"SUPERVISOR", "ADMIN"})
     @PostMapping("/assto")
     public TableResult<SaleChance> assto(SaleChance saleChance) {
         saleChance.setSalAssTime(LocalDateTime.now());
@@ -75,7 +82,7 @@ public class SaleChanceController {
         return TableResult.ok("指派成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES", "ADMIN"})
     @GetMapping("/getPersonalSaleChanceList")
     public TableResult<SaleChance> getPersonalSaleChanceList(Integer limit, Integer page, SysUser sysUser) {
         QueryWrapper<SaleChance> wrapper = new QueryWrapper<>();
@@ -96,7 +103,7 @@ public class SaleChanceController {
         }
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/devSuccess")
     public TableResult<SaleChance> devSuccess(SaleChance saleChance) {
         saleChance.setSalState(3);
@@ -114,7 +121,7 @@ public class SaleChanceController {
         return TableResult.ok("修改销售机会成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/devFailure")
     public TableResult<SaleChance> devFailure(SaleChance saleChance) {
         saleChance.setSalState(4);

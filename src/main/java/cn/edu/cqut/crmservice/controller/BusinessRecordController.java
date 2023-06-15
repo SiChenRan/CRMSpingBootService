@@ -33,7 +33,7 @@ public class BusinessRecordController {
      * @return TableResult
      */
     @GetMapping("/getBusinessRecordList")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN","SUPERVISOR"})
     public TableResult<BusinessRecord> getBusinessRecordList(Integer limit, Integer page, BusinessRecord businessRecord) {
         if (businessRecord.getCusId() == null) {
             Page<BusinessRecord> businessRecordPage = new Page<>(page, limit);
@@ -54,21 +54,21 @@ public class BusinessRecordController {
     }
 
     @PostMapping("/updateBusinessRecord")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<BusinessRecord> updateBusinessRecord(BusinessRecord businessRecord){
         businessRecordService.updateById(businessRecord);
         return TableResult.ok("修改联系人信息成功");
     }
 
     @PostMapping("/addBusinessRecord")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<BusinessRecord> addBusinessRecord(BusinessRecord businessRecord){
         businessRecordService.save(businessRecord);
         return TableResult.ok("新增联系人信息成功");
     }
 
     @PostMapping("/deleteBusinessRecord")
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     public TableResult<BusinessRecord> deleteBusinessRecord(Integer[] ids){//参数名要和前端ajax方法中data参数的属性名要一致
         businessRecordService.removeByIds(Arrays.asList(ids));//asList方法把数组转成list
         return TableResult.ok("删除联系人信息成功");

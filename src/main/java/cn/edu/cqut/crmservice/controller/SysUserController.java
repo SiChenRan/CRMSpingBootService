@@ -2,6 +2,7 @@ package cn.edu.cqut.crmservice.controller;
 
 import cn.edu.cqut.crmservice.entity.SysUser;
 import cn.edu.cqut.crmservice.service.ISysUserService;
+import cn.edu.cqut.crmservice.util.Auth;
 import cn.edu.cqut.crmservice.util.JWTUtil;
 import cn.edu.cqut.crmservice.util.TableResult;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -44,11 +45,15 @@ public class SysUserController {
         }
     }
 
+    @Auth(roles = {"ADMIN"})
+
     @PostMapping("/addSysUser")//映射的地址与方法名没有关系
     public TableResult<SysUser> addCustomer(SysUser sysUser) {
         sysUserService.save(sysUser);
         return TableResult.ok("新增客户信息成功！");
     }
+
+    @Auth(roles = {"ADMIN"})
 
     @GetMapping("/getSalesList")
     public List<SysUser> getSalesList() {
@@ -59,11 +64,15 @@ public class SysUserController {
         return sysUserService.list(wrapper);
     }
 
+    @Auth(roles = {"ADMIN"})
+
     //    @Auth()
     @PostMapping("/create")
     public TableResult<Boolean> createUser(@RequestBody SysUser sysUser) {
         return TableResult.ok("create ok", sysUserService.save(sysUser));
     }
+
+    @Auth(roles = {"ADMIN"})
 
     //    @Auth()
     @GetMapping("/list")
@@ -72,11 +81,15 @@ public class SysUserController {
         return TableResult.ok("list ok", userPage.getTotal(), userPage.getRecords());
     }
 
+    @Auth(roles = {"ADMIN"})
+
     //    @Auth()
     @DeleteMapping("/del")
     public TableResult<Boolean> deleteUserById(@RequestParam Integer id) {
         return TableResult.ok("del ok", sysUserService.remove(new LambdaQueryWrapper<SysUser>().eq(SysUser::getSuId, id)));
     }
+
+    @Auth(roles = {"ADMIN"})
 
     //    @Auth()
     @PostMapping("/update")

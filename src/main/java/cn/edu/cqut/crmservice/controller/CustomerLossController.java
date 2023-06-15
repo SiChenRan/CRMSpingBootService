@@ -44,7 +44,7 @@ public class CustomerLossController {
      * @param page  第几页
      * @return page1
      */
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @GetMapping("/getCustomerLossList")
     public TableResult<CustomerLoss> getCustomerList(Integer limit, Integer page,CustomerLoss customerLoss) {
         QueryWrapper<CustomerLoss> wrapper = new QueryWrapper<>();
@@ -64,7 +64,7 @@ public class CustomerLossController {
         }
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping ("/updateLoss")
     public TableResult<CustomerLoss> updateLoss(CustomerLoss customerLoss) {
         customerLossService.updateById(customerLoss);

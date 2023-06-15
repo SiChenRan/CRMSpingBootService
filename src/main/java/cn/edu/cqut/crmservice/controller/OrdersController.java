@@ -30,7 +30,7 @@ public class OrdersController {
     @Autowired
     IOrdersService ordersService;
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN","SUPERVISOR"})
     @GetMapping("/getOrdersList")
     public TableResult<Orders> getOrdersList(Integer limit, Integer page) {
         Page<Orders> ordersPage = new Page<>(page, limit);

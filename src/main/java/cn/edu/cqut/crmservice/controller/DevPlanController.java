@@ -28,7 +28,7 @@ public class DevPlanController {
     @Autowired
     private IDevPlanService devPlanService;
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN","SUPERVISOR"})
 
     @GetMapping("/getDevPlanList")
     public TableResult<DevPlan> getDevPlanList(Integer limit, Integer page, DevPlan devPlan) {
@@ -55,7 +55,7 @@ public class DevPlanController {
         }
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
 
     @PostMapping("/addDevPlan")//映射的地址与方法名没有关系
     public TableResult<DevPlan> addDevPlan(DevPlan devPlan) {
@@ -64,14 +64,14 @@ public class DevPlanController {
         return TableResult.ok("制定开发计划成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/updateDevPlan")
     public TableResult<DevPlan> updateSaleChance(DevPlan devPlan) {
         devPlanService.updateById(devPlan);
         return TableResult.ok("修改开发计划成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/execDevPlan")
     public TableResult<DevPlan> execSaleChance(DevPlan devPlan) {
         devPlan.setDevDateexec(LocalDate.now());
@@ -93,7 +93,7 @@ public class DevPlanController {
         return TableResult.ok("填写计划结果成功！");
     }
 
-    @Auth(roles = "SALES")
+    @Auth(roles = {"SALES","ADMIN"})
     @PostMapping("/deleteDevPlan")
     public TableResult<DevPlan> deleteCustomer(Integer[] ids) {//参数名要和前端的ajax方法中的data参数里面的属性名字一致
         devPlanService.removeByIds(Arrays.asList(ids));//asList用于将数组转化为List

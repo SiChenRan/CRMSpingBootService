@@ -12,5 +12,5 @@ public @interface Auth {
 
     boolean value() default true;//若为true，则需要权限控制
 
-    String roles() default "ADMIN";//设置允许访问的角色
+    String[] roles() default "ADMIN";//设置允许访问的角色
 }
