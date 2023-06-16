@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 15/06/2023 16:43:38
+ Date: 16/06/2023 10:26:27
 */
 
 SET NAMES utf8mb4;
@@ -106,6 +106,8 @@ INSERT INTO `customer` VALUES (15, '招商银行', '华东', '金融', 'VIP客�
 INSERT INTO `customer` VALUES (16, '招商银行', '华东', '金融', 'VIP客户', 5, 5, '上海市浦东区陆家嘴', '800000', '021-88889555', 'www.cmcb.com', '021-88889555', '123', '正常');
 INSERT INTO `customer` VALUES (17, '123', '东北', '教育', '普通客户', 3, 2, '123', '123', '123', '13', '213', '123', '正常');
 INSERT INTO `customer` VALUES (18, '重庆大学', '东北', '征服', '普通客户', 4, 4, '123123', '123213', '123213', '123123', '213213123', '123123', '正常');
+INSERT INTO `customer` VALUES (19, '1234', '华东', '金融', '普通客户', 5, 5, '上海市浦东区', NULL, '2341', NULL, NULL, 'admin', '正常');
+INSERT INTO `customer` VALUES (20, '1234', '华东', '金融', '普通客户', 5, 5, '上海市浦东区', NULL, '414', NULL, NULL, 'admin', '正常');
 
 -- ----------------------------
 -- Table structure for customer_loss
@@ -153,6 +155,8 @@ INSERT INTO `dev_plan` VALUES (5, 3, '2023-06-13', '大师傅', '2023-07-18', NU
 INSERT INTO `dev_plan` VALUES (6, 3, '2023-06-22', '阿斯顿发发生发撒法手动阀发射点法发是', '2023-06-13', '客户同意进一步商谈----2023-06-13     用户成功下单----2023-06-13    开发成功----2023-06-13\n', NULL);
 INSERT INTO `dev_plan` VALUES (7, 5, '2023-06-17', '金樽清酒斗十千', NULL, NULL, NULL);
 INSERT INTO `dev_plan` VALUES (8, 5, '2023-06-30', '玉盘珍馐直万钱', NULL, NULL, NULL);
+INSERT INTO `dev_plan` VALUES (9, 3, '2023-06-24', '657', '2023-06-16', '的发生----2023-06-16', 'zxc');
+INSERT INTO `dev_plan` VALUES (10, 3, '2023-06-14', '惹我给', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for orders
@@ -204,6 +208,9 @@ INSERT INTO `sale_chance` VALUES (2, 'CQUT', 2, '张小川', '11012011932', 98, 
 INSERT INTO `sale_chance` VALUES (3, '招商银行', 5, 'jack', '12345678910', 50, '五', '吃饭', 'root', '2023-06-09 16:33:22', 'zxc', '2023-06-12 15:47:10', 3);
 INSERT INTO `sale_chance` VALUES (4, 'Cqut', 2, '张栋', '110', 60, '没有', '没有', 'root', '2023-06-11 11:28:23', 'root', '2023-06-11 11:28:37', 2);
 INSERT INTO `sale_chance` VALUES (5, 'sd', 1, 'd', '234', 234, 'dsf', 'sd', 'user1', '2023-06-12 11:40:13', 'zxc', '2023-06-13 10:41:19', 4);
+INSERT INTO `sale_chance` VALUES (6, '阿斯顿', 2, '上打分', '123', 231, '123', '123', 'admin', '2023-06-16 09:52:09', '', '2023-06-16 09:52:24', 2);
+INSERT INTO `sale_chance` VALUES (7, '1234', 2, '1234', '2341', 124, '2142', '1243', 'admin', '2023-06-16 09:56:11', 'zxc', '2023-06-16 09:56:17', 3);
+INSERT INTO `sale_chance` VALUES (8, '1234', 1, '3421', '414', 2142, '1421', '3241', 'zxc', '2023-06-16 10:19:45', 'zxc', '2023-06-16 10:21:05', 3);
 
 -- ----------------------------
 -- Table structure for services
