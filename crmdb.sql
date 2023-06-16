@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 16/06/2023 10:26:27
+ Date: 16/06/2023 10:59:59
 */
 
 SET NAMES utf8mb4;
@@ -80,8 +80,8 @@ CREATE TABLE `customer`  (
   `cus_phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客户电话',
   `cus_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户网址',
   `cus_fax` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户传真',
-  `cus_salesman` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客户的销售员',
-  `cus_state` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '客户状态：正常、流失',
+  `cus_salesman` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户的销售员',
+  `cus_state` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户状态：正常、流失',
   PRIMARY KEY (`cus_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
@@ -108,6 +108,8 @@ INSERT INTO `customer` VALUES (17, '123', '东北', '教育', '普通客户', 3,
 INSERT INTO `customer` VALUES (18, '重庆大学', '东北', '征服', '普通客户', 4, 4, '123123', '123213', '123213', '123123', '213213123', '123123', '正常');
 INSERT INTO `customer` VALUES (19, '1234', '华东', '金融', '普通客户', 5, 5, '上海市浦东区', NULL, '2341', NULL, NULL, 'admin', '正常');
 INSERT INTO `customer` VALUES (20, '1234', '华东', '金融', '普通客户', 5, 5, '上海市浦东区', NULL, '414', NULL, NULL, 'admin', '正常');
+INSERT INTO `customer` VALUES (21, '1234', '华东', '金融', '普通客户', 5, 5, '上海市浦东区', NULL, '213', NULL, NULL, 'admin', '正常');
+INSERT INTO `customer` VALUES (22, '2341', '西北', '医疗', 'VIP客户', 5, 5, 'rq', 'rw', 'qr', 'wqrqw', 'rqwer', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for customer_loss
@@ -130,6 +132,7 @@ CREATE TABLE `customer_loss`  (
 -- ----------------------------
 INSERT INTO `customer_loss` VALUES (1, 1, 1, '2019-11-17 15:22:40', '', '', NULL, 2);
 INSERT INTO `customer_loss` VALUES (2, 2, 1, '2019-03-18 15:21:50', '', '', NULL, 1);
+INSERT INTO `customer_loss` VALUES (6, 3, 1, '2021-12-28 15:23:13', '', '', NULL, 1);
 
 -- ----------------------------
 -- Table structure for dev_plan
@@ -157,6 +160,7 @@ INSERT INTO `dev_plan` VALUES (7, 5, '2023-06-17', '金樽清酒斗十千', NULL
 INSERT INTO `dev_plan` VALUES (8, 5, '2023-06-30', '玉盘珍馐直万钱', NULL, NULL, NULL);
 INSERT INTO `dev_plan` VALUES (9, 3, '2023-06-24', '657', '2023-06-16', '的发生----2023-06-16', 'zxc');
 INSERT INTO `dev_plan` VALUES (10, 3, '2023-06-14', '惹我给', NULL, NULL, NULL);
+INSERT INTO `dev_plan` VALUES (11, 9, '2023-06-19', '2314', '2023-06-16', 'sdaf----2023-06-16', 'zxc');
 
 -- ----------------------------
 -- Table structure for orders
@@ -211,6 +215,7 @@ INSERT INTO `sale_chance` VALUES (5, 'sd', 1, 'd', '234', 234, 'dsf', 'sd', 'use
 INSERT INTO `sale_chance` VALUES (6, '阿斯顿', 2, '上打分', '123', 231, '123', '123', 'admin', '2023-06-16 09:52:09', '', '2023-06-16 09:52:24', 2);
 INSERT INTO `sale_chance` VALUES (7, '1234', 2, '1234', '2341', 124, '2142', '1243', 'admin', '2023-06-16 09:56:11', 'zxc', '2023-06-16 09:56:17', 3);
 INSERT INTO `sale_chance` VALUES (8, '1234', 1, '3421', '414', 2142, '1421', '3241', 'zxc', '2023-06-16 10:19:45', 'zxc', '2023-06-16 10:21:05', 3);
+INSERT INTO `sale_chance` VALUES (9, '1234', 4, '1234', '213', 213, '213', '4231', 'admin', '2023-06-16 10:50:10', 'zxc', '2023-06-16 10:50:37', 3);
 
 -- ----------------------------
 -- Table structure for services
@@ -250,6 +255,7 @@ INSERT INTO `services` VALUES (12, '咨询', '123123', '123213', 123123, '123123
 INSERT INTO `services` VALUES (13, '咨询', '123123', '213213', 123213, '123213', '2023-06-09 17:17:13', '已归档', '2023-06-11 19:46:51', 'user1', '牛牛牛', '2023-06-12 15:53:12', '垃圾玩意', 5, '2023-06-12 16:05:11');
 INSERT INTO `services` VALUES (14, '咨询', '123123', '123213', 123123, '123123', '2023-06-11 19:37:14', '已分配', '2023-06-12 14:25:11', 'user1', '', NULL, '', NULL, NULL);
 INSERT INTO `services` VALUES (15, '咨询', '1213', '123213', 2123, '213123', '2023-06-14 09:09:32', '新创建', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `services` VALUES (16, '咨询', '312', '1234', 1, 'admin', '2023-06-16 10:53:13', '新创建', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dic
