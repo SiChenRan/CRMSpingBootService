@@ -116,6 +116,8 @@ public class SaleChanceController {
         customer.setCusCredit(5);
         customer.setCusAddr("上海市浦东区");
         customer.setCusPhone(saleChance.getSalContactTel());
+        customer.setCusSalesman("admin");
+        customer.setCusState("正常");
         customerService.save(customer);
         saleChanceService.updateById(saleChance);
         return TableResult.ok("修改销售机会成功！");
