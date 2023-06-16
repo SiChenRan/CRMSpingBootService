@@ -83,9 +83,9 @@ public class DevPlan implements Serializable {
         return devDate;
     }
 
-    public void setDevDate(LocalDate devDate) {
-        this.devDate = devDate;
-    }
+//    public void setDevDate(LocalDate devDate) {
+//        this.devDate = devDate;
+//    }
 
     public void setDevDate(String devDate) {
         this.devDate = LocalDate.parse(devDate);
